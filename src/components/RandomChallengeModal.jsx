@@ -1,15 +1,19 @@
 import { Modal } from "@mantine/core";
 import { useEffect, useState } from "react";
 import RandomFact from "./RandomFact";
+import BallCost from "./challenges/BallCost";
 import ClickYes from "./challenges/ClickYes";
 import FindWaldo from "./challenges/FindWaldo";
 import GuessNumber from "./challenges/GuessNumber";
 import HumanBody from "./challenges/SelectHumanPart";
+import ChessPuzzle from "./challenges/SolveChessPuzzle";
+import Sudoku from "./challenges/Sudoku";
 import TypeYes from "./challenges/TypeYes";
 import TypingSpeed from "./challenges/TypingSpeed";
 import Sudoku from "./challenges/Sudoku";
 import BallCost from "./challenges/BallCost";
 import AvoidingButton from "./challenges/AvoidingButton";
+
 export default function RandomChallengeModal({
   opened,
   onClose,
@@ -34,6 +38,8 @@ export default function RandomChallengeModal({
   const handleIncorrectAnswer = () => {
     onIncorrectAnswer();
   };
+
+  console.log("Random index", randomIndex)
 
   const challenges = [
     <AvoidingButton
@@ -76,6 +82,10 @@ export default function RandomChallengeModal({
       onCorrectAnswer={handleCorrectAnswer}
       onIncorrectAnswer={handleIncorrectAnswer}
     />,
+    <ChessPuzzle
+      onCorrectAnswer={handleCorrectAnswer}
+      onIncorrectAnswer={handleIncorrectAnswer}
+    />
   ];
 
   useEffect(() => {
@@ -97,7 +107,8 @@ export default function RandomChallengeModal({
       closeOnEscape={false}
       closeOnClickOutside={false}
       withCloseButton={false}
-      size={"auto"}
+      size={"lg"}
+      style={{ display: "relative" }}
     >
       {randomFactOpen && Math.random() < 0.5 ? (
         <RandomFact onClose={handleRandomFactClose} />
