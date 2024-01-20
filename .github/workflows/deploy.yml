@@ -25,7 +25,7 @@ jobs:
       - name: Build project
         run: npm run build
         env:
-          VITE_YOUTUBE_API_KEY: ${{ secrets.VITE_YOUTUBE_API_KEY }}
+          VITE_YOUTUBE_API_KEY: AIzaSyD0JlldNiVyFdjYe3NuJIYAR_wGxGtLnco
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v2
