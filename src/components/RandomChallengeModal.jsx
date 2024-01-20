@@ -1,6 +1,8 @@
 import { Modal } from "@mantine/core";
 import { useEffect, useState } from "react";
+import shuffle from "../utils/shuffle";
 import RandomFact from "./RandomFact";
+import AvoidingButton from "./challenges/AvoidingButton";
 import BallCost from "./challenges/BallCost";
 import ClickYes from "./challenges/ClickYes";
 import FindWaldo from "./challenges/FindWaldo";
@@ -10,9 +12,6 @@ import ChessPuzzle from "./challenges/SolveChessPuzzle";
 import Sudoku from "./challenges/Sudoku";
 import TypeYes from "./challenges/TypeYes";
 import TypingSpeed from "./challenges/TypingSpeed";
-import Sudoku from "./challenges/Sudoku";
-import BallCost from "./challenges/BallCost";
-import AvoidingButton from "./challenges/AvoidingButton";
 
 export default function RandomChallengeModal({
   opened,
@@ -20,7 +19,7 @@ export default function RandomChallengeModal({
   onCorrectAnswer,
   onIncorrectAnswer,
 }) {
-  const [randomIndex, setRandomIndex] = useState(0);
+  const [index, setIndex] = useState(0);
   const [randomFactOpen, setRandomFactOpen] = useState(true);
 
   const handleRandomFactClose = () => {
@@ -28,10 +27,7 @@ export default function RandomChallengeModal({
   };
   const handleCorrectAnswer = () => {
     onCorrectAnswer();
-    setRandomIndex(
-      (currentIndex) =>
-        randomExcluded(0, challenges.length, currentIndex) % challenges.length
-    );
+    setIndex(c => (c + 1) % challenges.length);
     setRandomFactOpen(true);
   };
 
@@ -39,9 +35,7 @@ export default function RandomChallengeModal({
     onIncorrectAnswer();
   };
 
-  console.log("Random index", randomIndex)
-
-  const challenges = [
+  const [challenges, setChallenges] = useState([
     <AvoidingButton
       onCorrectAnswer={handleCorrectAnswer}
       onIncorrectAnswer={handleIncorrectAnswer}
@@ -86,15 +80,19 @@ export default function RandomChallengeModal({
       onCorrectAnswer={handleCorrectAnswer}
       onIncorrectAnswer={handleIncorrectAnswer}
     />
-  ];
+  ]);
+
+  useEffect(() => {
+    if (index === 0) {
+      console.log("Shuffling this stuff")
+      setChallenges(c => shuffle(c))
+    }
+  }, [index])
 
   useEffect(() => {
     if (!randomFactOpen && opened && Math.random() < 1) {
       // RandomFact has closed, the modal is still open, and 50% probability, show challenges
-      setRandomIndex(
-        (currentIndex) =>
-          randomExcluded(0, challenges.length, currentIndex) % challenges.length
-      );
+      setIndex(c => (c + 1) % challenges.length);
     }
   }, [randomFactOpen, opened, challenges.length]);
 
@@ -113,14 +111,8 @@ export default function RandomChallengeModal({
       {randomFactOpen && Math.random() < 0.5 ? (
         <RandomFact onClose={handleRandomFactClose} />
       ) : (
-        challenges[randomIndex]
+        challenges[index]
       )}
     </Modal>
   );
-}
-
-function randomExcluded(min, max, excluded) {
-  let n = Math.floor(Math.random() * (max - min) + min);
-  if (n >= excluded) n++;
-  return n;
 }
