@@ -106,6 +106,7 @@ export default function RandomChallengeModal({
   }, [randomFactOpen, opened, challenges.length]);
 
   console.log(challenges[index], index)
+  console.log("API key", import.meta.env.VITE_YOUTUBE_API_KEY)
   return (
     <Modal
       opened={opened}
