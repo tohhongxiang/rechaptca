@@ -3,6 +3,7 @@ import { useState } from "react";
 import ClickYes from "./challenges/ClickYes";
 import TypeYes from "./challenges/TypeYes";
 import HumanBody from "./challenges/SelectHumanPart";
+import GuessNumber from "./challenges/GuessNumber";
 
 export default function RandomChallengeModal({
   opened,
@@ -11,7 +12,6 @@ export default function RandomChallengeModal({
   onIncorrectAnswer,
 }) {
   const [randomIndex, setRandomIndex] = useState(0);
-  console.log(randomIndex);
 
   const handleCorrectAnswer = () => {
     onCorrectAnswer();
