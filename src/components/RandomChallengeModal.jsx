@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import RandomFact from "./RandomFact";
 import ClickYes from "./challenges/ClickYes";
 import GuessNumber from "./challenges/GuessNumber";
+import FindWaldo from "./challenges/FindWaldo";
 import HumanBody from "./challenges/SelectHumanPart";
 import TypeYes from "./challenges/TypeYes";
 import TypingSpeed from "./challenges/TypingSpeed";
@@ -50,6 +51,10 @@ export default function RandomChallengeModal({
       onCorrectAnswer={handleCorrectAnswer}
       onIncorrectAnswer={handleIncorrectAnswer}
     />,
+    <FindWaldo
+      onCorrectAnswer={handleCorrectAnswer}
+      onIncorrectAnswer={handleIncorrectAnswer}
+    />,
     <TypingSpeed
       onCorrectAnswer={handleCorrectAnswer}
       onIncorrectAnswer={handleIncorrectAnswer}
@@ -75,6 +80,7 @@ export default function RandomChallengeModal({
       closeOnEscape={false}
       closeOnClickOutside={false}
       withCloseButton={false}
+      size={"auto"}
     >
       {randomFactOpen && Math.random() < 0.5 ? (
         <RandomFact onClose={handleRandomFactClose} />
