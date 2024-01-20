@@ -32,7 +32,7 @@ export default function Check_URL_youtube({onCorrectAnswer, onIncorrectAnswer}){
         console.log(targetDate);
         console.log("User's input")
         console.log(video_date_published)
-        if (targetDate.getDay()==video_date_published.getDay() && targetDate.getMonth()==video_date_published.getMonth() 
+        if (targetDate.getDate()==video_date_published.getDate() && targetDate.getMonth()==video_date_published.getMonth() 
         && targetDate.getFullYear()==video_date_published.getFullYear()){
             onCorrectAnswer()
         }
@@ -44,7 +44,7 @@ export default function Check_URL_youtube({onCorrectAnswer, onIncorrectAnswer}){
    
     return(
         <div>
-            <p>Input URL of a Youtube Video that is uploaded on {targetDate.getDay()+1}/{targetDate.getMonth()+1}/{targetDate.getFullYear()+1}.</p>
+            <p>Input URL of a Youtube Video that is uploaded on {targetDate.getDate()}/{targetDate.getMonth()+1}/{targetDate.getFullYear()}.</p>
             <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
                 <TextInput
                     value={inputURL}
