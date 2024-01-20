@@ -1,20 +1,19 @@
 import { Modal } from "@mantine/core";
 import { useEffect, useState } from "react";
 import shuffle from "../utils/shuffle";
-import RandomFact from "./RandomFact";
 import AvoidingButton from "./challenges/AvoidingButton";
 import BallCost from "./challenges/BallCost";
+import CatchCountDownTimer from "./challenges/CatchCountDownTimer";
 import ClickYes from "./challenges/ClickYes";
 import FindWaldo from "./challenges/FindWaldo";
 import GuessNumber from "./challenges/GuessNumber";
 import HumanBody from "./challenges/SelectHumanPart";
+import SelectPicture from "./challenges/SelectPicture";
 import ChessPuzzle from "./challenges/SolveChessPuzzle";
 import Sudoku from "./challenges/Sudoku";
 import TypeYes from "./challenges/TypeYes";
 import TypingSpeed from "./challenges/TypingSpeed";
 import Check_URL_youtube from "./challenges/URL_youtube";
-import SelectPicture from "./challenges/SelectPicture";
-import CatchCountDownTimer from "./challenges/CatchCountDownTimer";
 
 export default function RandomChallengeModal({
   opened,
@@ -95,7 +94,6 @@ export default function RandomChallengeModal({
 
   useEffect(() => {
     if (index === 0) {
-      console.log("Shuffling this stuff")
       setChallenges(c => shuffle(c))
     }
   }, [index])
@@ -121,11 +119,11 @@ export default function RandomChallengeModal({
       style={{ display: "relative"}}
     >
       {/* <p>{index}</p> */}
-      {randomFactOpen && Math.random() < 0.5 ? (
+      {/* {randomFactOpen && Math.random() < 0.5 ? (
         <RandomFact onClose={handleRandomFactClose} />
-      ) : (
-        challenges[index]
-      )}
+      ) : ( */}
+        {challenges[index]}
+      {/* )} */}
     </Modal>
   );
 }
