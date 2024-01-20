@@ -4,6 +4,7 @@ import ClickYes from "./challenges/ClickYes";
 import TypeYes from "./challenges/TypeYes";
 import HumanBody from "./challenges/SelectHumanPart";
 import GuessNumber from "./challenges/GuessNumber";
+import FindWaldo from "./challenges/FindWaldo";
 
 export default function RandomChallengeModal({
   opened,
@@ -38,6 +39,10 @@ export default function RandomChallengeModal({
       onCorrectAnswer={handleCorrectAnswer}
       onIncorrectAnswer={handleIncorrectAnswer}
     />,
+    <FindWaldo
+      onCorrectAnswer={handleCorrectAnswer}
+      onIncorrectAnswer={handleIncorrectAnswer}
+    />,
   ];
 
   return (
@@ -49,6 +54,7 @@ export default function RandomChallengeModal({
       closeOnEscape={false}
       closeOnClickOutside={false}
       withCloseButton={false}
+      size={"auto"}
     >
       {challenges[randomIndex]}
     </Modal>
