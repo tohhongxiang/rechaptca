@@ -7,6 +7,7 @@ import GuessNumber from "./challenges/GuessNumber";
 import HumanBody from "./challenges/SelectHumanPart";
 import TypeYes from "./challenges/TypeYes";
 import TypingSpeed from "./challenges/TypingSpeed";
+import Sudoku from "./challenges/Sudoku";
 import BallCost from "./challenges/BallCost";
 export default function RandomChallengeModal({
   opened,
@@ -59,6 +60,10 @@ export default function RandomChallengeModal({
       onIncorrectAnswer={handleIncorrectAnswer}
     />,
     <BallCost
+      onCorrectAnswer={handleCorrectAnswer}
+      onIncorrectAnswer={handleIncorrectAnswer}
+    />,
+    <Sudoku
       onCorrectAnswer={handleCorrectAnswer}
       onIncorrectAnswer={handleIncorrectAnswer}
     />,
