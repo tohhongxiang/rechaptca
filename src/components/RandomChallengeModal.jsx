@@ -14,8 +14,8 @@ import TypeYes from "./challenges/TypeYes";
 import TypingSpeed from "./challenges/TypingSpeed";
 import Check_URL_youtube from "./challenges/URL_youtube";
 import SelectPicture from "./challenges/SelectPicture";
-
 import CatchCountDownTimer from "./challenges/CatchCountDownTimer";
+
 export default function RandomChallengeModal({
   opened,
   onClose,
