@@ -2,11 +2,11 @@ import { Modal } from "@mantine/core";
 import { useEffect, useState } from "react";
 import RandomFact from "./RandomFact";
 import ClickYes from "./challenges/ClickYes";
-import FindWaldo from "./challenges/FindWaldo";
+// import FindWaldo from "./challenges/FindWaldo";
 import GuessNumber from "./challenges/GuessNumber";
-import HumanBody from "./challenges/SelectHumanPart";
-import TypeYes from "./challenges/TypeYes";
-import TypingSpeed from "./challenges/TypingSpeed";
+// import HumanBody from "./challenges/SelectHumanPart";
+// import TypeYes from "./challenges/TypeYes";
+// import TypingSpeed from "./challenges/TypingSpeed";
 
 export default function RandomChallengeModal({
   opened,
@@ -38,26 +38,26 @@ export default function RandomChallengeModal({
       onCorrectAnswer={handleCorrectAnswer}
       onIncorrectAnswer={handleIncorrectAnswer}
     />,
-    <TypeYes
-      onCorrectAnswer={handleCorrectAnswer}
-      onIncorrectAnswer={handleIncorrectAnswer}
-    />,
+    // <TypeYes
+    //   onCorrectAnswer={handleCorrectAnswer}
+    //   onIncorrectAnswer={handleIncorrectAnswer}
+    // />,
     <GuessNumber 
       onCorrectAnswer={handleCorrectAnswer}
       onIncorrectAnswer={handleIncorrectAnswer}
     />,
-    <HumanBody
-      onCorrectAnswer={handleCorrectAnswer}
-      onIncorrectAnswer={handleIncorrectAnswer}
-    />,
-    <FindWaldo
-      onCorrectAnswer={handleCorrectAnswer}
-      onIncorrectAnswer={handleIncorrectAnswer}
-    />,
-    <TypingSpeed
-      onCorrectAnswer={handleCorrectAnswer}
-      onIncorrectAnswer={handleIncorrectAnswer}
-    />
+    // <HumanBody
+    //   onCorrectAnswer={handleCorrectAnswer}
+    //   onIncorrectAnswer={handleIncorrectAnswer}
+    // />,
+    // <FindWaldo
+    //   onCorrectAnswer={handleCorrectAnswer}
+    //   onIncorrectAnswer={handleIncorrectAnswer}
+    // />,
+    // <TypingSpeed
+    //   onCorrectAnswer={handleCorrectAnswer}
+    //   onIncorrectAnswer={handleIncorrectAnswer}
+    // />
   ];
 
   useEffect(() => {
