@@ -20,7 +20,7 @@ export default function Check_URL_youtube({onCorrectAnswer, onIncorrectAnswer}){
             console.error(error)
         }
 
-        const APIKey="AIzaSyD0JlldNiVyFdjYe3NuJIYAR_wGxGtLnco"
+        const APIKey="GET API KEY"
         const URL_check="https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=$vidkey&key=$apikey&part=snippet"
         let URL_check_video=URL_check.replace("$vidkey",VideoKey)
         let URL_check_video_api=URL_check_video.replace("$apikey",APIKey)
