@@ -96,7 +96,7 @@ export default function RandomChallengeModal({
     if (index === 0) {
       setChallenges(c => shuffle(c))
     }
-  }, [index])
+  }, [index, opened])
 
   useEffect(() => {
     if (!randomFactOpen && opened && Math.random() < 1) {
