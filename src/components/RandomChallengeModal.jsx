@@ -2,6 +2,7 @@ import { Modal } from "@mantine/core";
 import { useState } from "react";
 import ClickYes from "./challenges/ClickYes";
 import TypeYes from "./challenges/TypeYes";
+import GuessNumber from "./challenges/GuessNumber";
 
 export default function RandomChallengeModal({ opened, onClose, onCorrectAnswer, onIncorrectAnswer }) {
     const [randomIndex, setRandomIndex] = useState(0)
@@ -18,7 +19,8 @@ export default function RandomChallengeModal({ opened, onClose, onCorrectAnswer,
 
     const challenges = [
         <ClickYes onCorrectAnswer={handleCorrectAnswer} onIncorrectAnswer={handleIncorrectAnswer} />,
-        <TypeYes onCorrectAnswer={handleCorrectAnswer} onIncorrectAnswer={handleIncorrectAnswer} />
+        <TypeYes onCorrectAnswer={handleCorrectAnswer} onIncorrectAnswer={handleIncorrectAnswer} />,
+        <GuessNumber onCorrectAnswer={handleCorrectAnswer} onIncorrectAnswer={handleIncorrectAnswer} />
     ]
 
     return (
