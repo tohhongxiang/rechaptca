@@ -1,5 +1,4 @@
-import { TextInput } from '@mantine/core';
-import { Button } from "@mantine/core";
+import { Button, TextInput } from '@mantine/core';
 import { useState } from "react";
 
 export default function Check_URL_youtube({ onCorrectAnswer, onIncorrectAnswer }) {
@@ -31,6 +30,7 @@ export default function Check_URL_youtube({ onCorrectAnswer, onIncorrectAnswer }
         let URL_check_video_api = URL_check_video.replace("$apikey", APIKey)
         let data_youtube = (await fetch(URL_check_video_api));
         let video_date_published = await data_youtube.json()
+        console.log(video_date_published)
         video_date_published = (video_date_published["items"][0]["snippet"]["publishedAt"]).split("T")[0]
         video_date_published = new Date(video_date_published)
         
@@ -39,6 +39,7 @@ export default function Check_URL_youtube({ onCorrectAnswer, onIncorrectAnswer }
             onCorrectAnswer()
         }
         else {
+            console.log("Target date", targetDate, "Received date", video_date_published)
             onIncorrectAnswer()
         }
 
