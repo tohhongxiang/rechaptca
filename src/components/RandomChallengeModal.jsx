@@ -1,8 +1,9 @@
 import { Modal } from "@mantine/core";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ClickYes from "./challenges/ClickYes";
 import TypeYes from "./challenges/TypeYes";
 import HumanBody from "./challenges/SelectHumanPart";
+import RandomFact from "./RandomFact";
 import GuessNumber from "./challenges/GuessNumber";
 
 export default function RandomChallengeModal({
@@ -12,13 +13,19 @@ export default function RandomChallengeModal({
   onIncorrectAnswer,
 }) {
   const [randomIndex, setRandomIndex] = useState(0);
+  console.log(randomIndex);
+  const [randomFactOpen, setRandomFactOpen] = useState(true);
 
+  const handleRandomFactClose = () => {
+    setRandomFactOpen(false);
+  };
   const handleCorrectAnswer = () => {
     onCorrectAnswer();
     setRandomIndex(
       (currentIndex) =>
         randomExcluded(0, challenges.length, currentIndex) % challenges.length
     );
+    setRandomFactOpen(true);
   };
 
   const handleIncorrectAnswer = () => {
@@ -40,6 +47,16 @@ export default function RandomChallengeModal({
     />,
   ];
 
+  useEffect(() => {
+    if (!randomFactOpen && opened && Math.random() < 1) {
+      // RandomFact has closed, the modal is still open, and 50% probability, show challenges
+      setRandomIndex(
+        (currentIndex) =>
+          randomExcluded(0, challenges.length, currentIndex) % challenges.length
+      );
+    }
+  }, [randomFactOpen, opened, challenges.length]);
+
   return (
     <Modal
       opened={opened}
@@ -50,7 +67,11 @@ export default function RandomChallengeModal({
       closeOnClickOutside={false}
       withCloseButton={false}
     >
-      {challenges[randomIndex]}
+      {randomFactOpen && Math.random() < 0.5 ? (
+        <RandomFact onClose={handleRandomFactClose} />
+      ) : (
+        challenges[randomIndex]
+      )}
     </Modal>
   );
 }
