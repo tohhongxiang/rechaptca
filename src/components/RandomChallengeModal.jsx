@@ -5,7 +5,6 @@ import TypeYes from "./challenges/TypeYes";
 
 export default function RandomChallengeModal({ opened, onClose, onCorrectAnswer, onIncorrectAnswer }) {
     const [randomIndex, setRandomIndex] = useState(0)
-    console.log(randomIndex)
 
     const handleCorrectAnswer = () => {
         onCorrectAnswer();
@@ -22,7 +21,7 @@ export default function RandomChallengeModal({ opened, onClose, onCorrectAnswer,
     ]
 
     return (
-        <Modal opened={opened} onClose={onClose} title="Captcha Challenge" centered closeOnEscape={false} closeOnClickOutside={false} withCloseButton={false}>
+        <Modal opened={opened} onClose={onClose} title={<strong>Captcha Challenge</strong>} centered closeOnEscape={false} closeOnClickOutside={false} withCloseButton={false}>
             {challenges[randomIndex]}
         </Modal>
     )
