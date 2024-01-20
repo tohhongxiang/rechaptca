@@ -1,18 +1,19 @@
+import { Button, TextInput } from '@mantine/core';
 import React, { useState } from 'react';
+import getRandomInt from "../../utils/getRandomInt";
 
 const MAX_NUM_OF_TRIALS = 10;
+const MIN_NUMBER = 0;
+const MAX_NUMBER = 100;
 
 export default function GuessNumber({ onCorrectAnswer, onIncorrectAnswer }) {
-  const [randomNumber, setRandomNumber] = useState(generateRandomNumber());
+  const [randomNumber, setRandomNumber] = useState(getRandomInt(MIN_NUMBER, MAX_NUMBER));
   const [userGuess, setUserGuess] = useState('');
   const [message, setMessage] = useState('');
   const [numOfTrials, setNumOfTrials] = useState(1);
 
-  function generateRandomNumber() {
-    return Math.floor(Math.random() * 100); // Generates a random number between 1 and 100
-  }
-
-  const handleGuess = () => {
+  const handleGuess = (e) => {
+    e.preventDefault()
     const guess = parseInt(userGuess, 10);
 
     if (isNaN(guess)) {
@@ -38,19 +39,20 @@ export default function GuessNumber({ onCorrectAnswer, onIncorrectAnswer }) {
     }
   };
 
+  const attemptsRemaining = MAX_NUM_OF_TRIALS - numOfTrials + 1;
   return (
-    <div style={{display:"flex", flexDirection: "column",justifyContent:"centre", alignContent:"centre"}}>
+    <div style={{ display: "flex", flexDirection: "column", justifyContent: "centre", alignContent: "centre" }}>
       <h2>What number am thinking?</h2>
-      <div>
-        <input
-          type="text"
+      <p>I am thinking of a number between {MIN_NUMBER} (inclusive) and {MAX_NUMBER - 1} (inclusive)</p>
+      <form onSubmit={handleGuess} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+        <TextInput
           value={userGuess}
-          onChange={(e) => setUserGuess(e.target.value)}
+          onChange={(e) => setUserGuess(e.currentTarget.value)}
           placeholder="Enter your guess"
-          />
-        <button onClick={handleGuess}>Submit Guess</button>
-      </div>
-      <p>{message}</p>
+        />
+        <Button type="submit">Submit ({attemptsRemaining} attempt{attemptsRemaining === 1 ? "" : "s"} remaining)</Button>
+      </form>
+      <p style={{ textAlign: "center" }}>{message}</p>
     </div>
   );
 };
