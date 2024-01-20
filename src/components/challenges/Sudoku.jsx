@@ -57,6 +57,7 @@ export default function Sudoku({ onCorrectAnswer, onIncorrectAnswer }) {
         setUserGrid(nullifyArray(gridData.value));
         setFixedChecks(gridData.value.map(row => row.map(num => num === 0 ? false : true)));
         setSolutionGrid(nullifyArray(gridData.solution));
+        console.log(solutionGrid);
       } catch (error) {
         console.error('Error fetching data:', error.message);
       }
@@ -106,7 +107,7 @@ export default function Sudoku({ onCorrectAnswer, onIncorrectAnswer }) {
   };
 
   return (
-    <Container style = {{ width: "100vw", height: "100vh"}}>
+    <Container style = {{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
       <div style={{display:"flex"}}>
         <h1>Solve this Sudoku</h1>
         <Button onClick={handleSolve} style={{ marginTop: '20px', marginLeft: '20px' }}>
