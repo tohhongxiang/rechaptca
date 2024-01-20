@@ -1,10 +1,12 @@
 import { Modal } from "@mantine/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import RandomFact from "./RandomFact";
 import ClickYes from "./challenges/ClickYes";
-import TypeYes from "./challenges/TypeYes";
-import HumanBody from "./challenges/SelectHumanPart";
 import GuessNumber from "./challenges/GuessNumber";
 import FindWaldo from "./challenges/FindWaldo";
+import HumanBody from "./challenges/SelectHumanPart";
+import TypeYes from "./challenges/TypeYes";
+import TypingSpeed from "./challenges/TypingSpeed";
 
 export default function RandomChallengeModal({
   opened,
@@ -13,13 +15,19 @@ export default function RandomChallengeModal({
   onIncorrectAnswer,
 }) {
   const [randomIndex, setRandomIndex] = useState(0);
+  console.log(randomIndex);
+  const [randomFactOpen, setRandomFactOpen] = useState(true);
 
+  const handleRandomFactClose = () => {
+    setRandomFactOpen(false);
+  };
   const handleCorrectAnswer = () => {
     onCorrectAnswer();
     setRandomIndex(
       (currentIndex) =>
         randomExcluded(0, challenges.length, currentIndex) % challenges.length
     );
+    setRandomFactOpen(true);
   };
 
   const handleIncorrectAnswer = () => {
@@ -35,6 +43,10 @@ export default function RandomChallengeModal({
       onCorrectAnswer={handleCorrectAnswer}
       onIncorrectAnswer={handleIncorrectAnswer}
     />,
+    <GuessNumber 
+      onCorrectAnswer={handleCorrectAnswer}
+      onIncorrectAnswer={handleIncorrectAnswer}
+    />,
     <HumanBody
       onCorrectAnswer={handleCorrectAnswer}
       onIncorrectAnswer={handleIncorrectAnswer}
@@ -43,7 +55,21 @@ export default function RandomChallengeModal({
       onCorrectAnswer={handleCorrectAnswer}
       onIncorrectAnswer={handleIncorrectAnswer}
     />,
+    <TypingSpeed
+      onCorrectAnswer={handleCorrectAnswer}
+      onIncorrectAnswer={handleIncorrectAnswer}
+    />
   ];
+
+  useEffect(() => {
+    if (!randomFactOpen && opened && Math.random() < 1) {
+      // RandomFact has closed, the modal is still open, and 50% probability, show challenges
+      setRandomIndex(
+        (currentIndex) =>
+          randomExcluded(0, challenges.length, currentIndex) % challenges.length
+      );
+    }
+  }, [randomFactOpen, opened, challenges.length]);
 
   return (
     <Modal
@@ -56,7 +82,11 @@ export default function RandomChallengeModal({
       withCloseButton={false}
       size={"auto"}
     >
-      {challenges[randomIndex]}
+      {randomFactOpen && Math.random() < 0.5 ? (
+        <RandomFact onClose={handleRandomFactClose} />
+      ) : (
+        challenges[randomIndex]
+      )}
     </Modal>
   );
 }
