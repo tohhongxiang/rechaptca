@@ -35,7 +35,7 @@ export default function Game() {
         <div>
           <h1>Game Over</h1>
           <p>
-            You are deemed to be a robot. You have solved {score} challenges
+            You are deemed to be a robot. You have solved only <strong>{score}</strong> challenges
           </p>
           <Button onClick={handleRetry}>Retry</Button>
         </div>
