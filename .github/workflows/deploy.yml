@@ -5,6 +5,9 @@ on:
     branches:
       - master
 
+env:
+  VITE_YOUTUBE_API_KEY: ${{ secrets.VITE_YOUTUBE_API_KEY }}
+
 jobs:
   build:
     name: Build
