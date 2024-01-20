@@ -89,14 +89,13 @@ export default function RandomChallengeModal({
     <SelectPicture
       onCorrectAnswer={handleCorrectAnswer}
       onIncorrectAnswer={handleIncorrectAnswer}
-      />,
+    />,
   ]);
 
   useEffect(() => {
-    if (index === 0) {
-      setChallenges(c => shuffle(c))
-    }
-  }, [index, opened])
+    setIndex(0)
+    setChallenges(c => shuffle(c))
+  }, [opened])
 
   useEffect(() => {
     if (!randomFactOpen && opened && Math.random() < 1) {
@@ -116,13 +115,13 @@ export default function RandomChallengeModal({
       closeOnClickOutside={false}
       withCloseButton={false}
       size={"lg"}
-      style={{ display: "relative"}}
+      style={{ display: "relative" }}
     >
       {/* <p>{index}</p> */}
       {/* {randomFactOpen && Math.random() < 0.5 ? (
         <RandomFact onClose={handleRandomFactClose} />
       ) : ( */}
-        {challenges[index]}
+      {challenges[index]}
       {/* )} */}
     </Modal>
   );
