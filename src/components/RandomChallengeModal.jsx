@@ -2,8 +2,8 @@ import { Modal } from "@mantine/core";
 import { useEffect, useState } from "react";
 import RandomFact from "./RandomFact";
 import ClickYes from "./challenges/ClickYes";
-import GuessNumber from "./challenges/GuessNumber";
 import FindWaldo from "./challenges/FindWaldo";
+import GuessNumber from "./challenges/GuessNumber";
 import HumanBody from "./challenges/SelectHumanPart";
 import TypeYes from "./challenges/TypeYes";
 import TypingSpeed from "./challenges/TypingSpeed";
@@ -15,7 +15,6 @@ export default function RandomChallengeModal({
   onIncorrectAnswer,
 }) {
   const [randomIndex, setRandomIndex] = useState(0);
-  console.log(randomIndex);
   const [randomFactOpen, setRandomFactOpen] = useState(true);
 
   const handleRandomFactClose = () => {
