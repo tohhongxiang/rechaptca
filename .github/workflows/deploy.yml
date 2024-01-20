@@ -26,6 +26,7 @@ jobs:
         run: npm run build
         env:
           VITE_YOUTUBE_API_KEY: ${{ secrets.VITE_YOUTUBE_API_KEY }}
+        secrets: inherit
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v2
