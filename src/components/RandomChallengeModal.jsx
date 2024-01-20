@@ -15,6 +15,7 @@ import TypingSpeed from "./challenges/TypingSpeed";
 import Check_URL_youtube from "./challenges/URL_youtube";
 import SelectPicture from "./challenges/SelectPicture";
 
+import CatchCountDownTimer from "./challenges/CatchCountDownTimer";
 export default function RandomChallengeModal({
   opened,
   onClose,
@@ -78,7 +79,7 @@ export default function RandomChallengeModal({
       onCorrectAnswer={handleCorrectAnswer}
       onIncorrectAnswer={handleIncorrectAnswer}
     />,
-    <AvoidingButton
+    <CatchCountDownTimer
       onCorrectAnswer={handleCorrectAnswer}
       onIncorrectAnswer={handleIncorrectAnswer}
     />,
@@ -90,7 +91,6 @@ export default function RandomChallengeModal({
       onCorrectAnswer={handleCorrectAnswer}
       onIncorrectAnswer={handleIncorrectAnswer}
       />,
-
   ]);
 
   useEffect(() => {
@@ -107,6 +107,7 @@ export default function RandomChallengeModal({
     }
   }, [randomFactOpen, opened, challenges.length]);
 
+  console.log(challenges[index], index)
   return (
     <Modal
       opened={opened}
@@ -117,8 +118,9 @@ export default function RandomChallengeModal({
       closeOnClickOutside={false}
       withCloseButton={false}
       size={"lg"}
-      style={{ display: "relative" }}
+      style={{ display: "relative"}}
     >
+      {/* <p>{index}</p> */}
       {randomFactOpen && Math.random() < 0.5 ? (
         <RandomFact onClose={handleRandomFactClose} />
       ) : (

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from '@mantine/core'; 
+import { Button, Modal } from '@mantine/core'; 
 
-const MAX_V_POS_PERCENT = 87;
-const MAX_H_POS_PERCENT = 93;
-const DURATION = 30 * 1000; // 1 minute in milliseconds
+const MAX_V_POS_PERCENT = 84;
+const MAX_H_POS_PERCENT = 108;
+const DURATION = 15 * 1000; // 1 minute in milliseconds
 
 export default function AvoidingButton({ onCorrectAnswer, onIncorrectAnswer }) {
   const [buttonPosition, setButtonPosition] = useState({ x: 46, y: 43 });
@@ -37,13 +37,14 @@ export default function AvoidingButton({ onCorrectAnswer, onIncorrectAnswer }) {
   }, []);
 
   return (
-    <div style={{width:"80vw", height:"80vh", position: 'relative'}}>
+    <div style={{ position: 'relative', width: "500px", height: "500px"}}>
       <Button
-        style={{backgroundColor: buttonColor, width: "100px", height: "100px", left: `${buttonPosition.x}%`, top: `${buttonPosition.y}%`, borderRadius: "50%"}}
+        style={{fontSize:"15px", backgroundColor: buttonColor, width: "80px", height: "80px", left: `${buttonPosition.x}%`, top: `${buttonPosition.y}%`}}
         onMouseOver={movingWhileAvoiding}
         onClick={onCorrectAnswer}
+        radius="100%"
         >
-        Click Me
+        Click <br /> Me
       </Button>
     </div>
   );
