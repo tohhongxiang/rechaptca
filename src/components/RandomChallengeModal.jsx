@@ -9,6 +9,7 @@ import TypeYes from "./challenges/TypeYes";
 import TypingSpeed from "./challenges/TypingSpeed";
 import Sudoku from "./challenges/Sudoku";
 import BallCost from "./challenges/BallCost";
+import AvoidingButton from "./challenges/AvoidingButton";
 export default function RandomChallengeModal({
   opened,
   onClose,
@@ -35,6 +36,10 @@ export default function RandomChallengeModal({
   };
 
   const challenges = [
+    <AvoidingButton
+      onCorrectAnswer={handleCorrectAnswer}
+      onIncorrectAnswer={handleIncorrectAnswer}
+    />,
     <ClickYes
       onCorrectAnswer={handleCorrectAnswer}
       onIncorrectAnswer={handleIncorrectAnswer}
@@ -64,6 +69,10 @@ export default function RandomChallengeModal({
       onIncorrectAnswer={handleIncorrectAnswer}
     />,
     <Sudoku
+      onCorrectAnswer={handleCorrectAnswer}
+      onIncorrectAnswer={handleIncorrectAnswer}
+    />,
+    <AvoidingButton
       onCorrectAnswer={handleCorrectAnswer}
       onIncorrectAnswer={handleIncorrectAnswer}
     />,
