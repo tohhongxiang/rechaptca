@@ -1,12 +1,12 @@
 import '@mantine/core/styles.css';
+import Game from "./components/Game";
 
 import { MantineProvider } from '@mantine/core';
-import Game from './components/Game';
 
 export default function App() {
   return (
     <MantineProvider>
-      <Game />
+        <Game />
     </MantineProvider>
   );
 }
