@@ -7,6 +7,7 @@ import GuessNumber from "./challenges/GuessNumber";
 import HumanBody from "./challenges/SelectHumanPart";
 import TypeYes from "./challenges/TypeYes";
 import TypingSpeed from "./challenges/TypingSpeed";
+import Check_URL_youtube from "./challenges/URL_youtube";
 
 export default function RandomChallengeModal({
   opened,
@@ -34,27 +35,31 @@ export default function RandomChallengeModal({
   };
 
   const challenges = [
-    <ClickYes
-      onCorrectAnswer={handleCorrectAnswer}
-      onIncorrectAnswer={handleIncorrectAnswer}
-    />,
-    <TypeYes
-      onCorrectAnswer={handleCorrectAnswer}
-      onIncorrectAnswer={handleIncorrectAnswer}
-    />,
-    <GuessNumber 
-      onCorrectAnswer={handleCorrectAnswer}
-      onIncorrectAnswer={handleIncorrectAnswer}
-    />,
-    <HumanBody
-      onCorrectAnswer={handleCorrectAnswer}
-      onIncorrectAnswer={handleIncorrectAnswer}
-    />,
-    <FindWaldo
-      onCorrectAnswer={handleCorrectAnswer}
-      onIncorrectAnswer={handleIncorrectAnswer}
-    />,
-    <TypingSpeed
+    // <ClickYes
+    //   onCorrectAnswer={handleCorrectAnswer}
+    //   onIncorrectAnswer={handleIncorrectAnswer}
+    // />,
+    // <TypeYes
+    //   onCorrectAnswer={handleCorrectAnswer}
+    //   onIncorrectAnswer={handleIncorrectAnswer}
+    // />,
+    // <GuessNumber 
+    //   onCorrectAnswer={handleCorrectAnswer}
+    //   onIncorrectAnswer={handleIncorrectAnswer}
+    // />,
+    // <HumanBody
+    //   onCorrectAnswer={handleCorrectAnswer}
+    //   onIncorrectAnswer={handleIncorrectAnswer}
+    // />,
+    // <FindWaldo
+    //   onCorrectAnswer={handleCorrectAnswer}
+    //   onIncorrectAnswer={handleIncorrectAnswer}
+    // />,
+    // <TypingSpeed
+    //   onCorrectAnswer={handleCorrectAnswer}
+    //   onIncorrectAnswer={handleIncorrectAnswer}
+    // />,
+    <Check_URL_youtube
       onCorrectAnswer={handleCorrectAnswer}
       onIncorrectAnswer={handleIncorrectAnswer}
     />
