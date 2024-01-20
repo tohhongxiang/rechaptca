@@ -12,6 +12,7 @@ import ChessPuzzle from "./challenges/SolveChessPuzzle";
 import Sudoku from "./challenges/Sudoku";
 import TypeYes from "./challenges/TypeYes";
 import TypingSpeed from "./challenges/TypingSpeed";
+import Check_URL_youtube from "./challenges/URL_youtube";
 
 export default function RandomChallengeModal({
   opened,
@@ -61,6 +62,10 @@ export default function RandomChallengeModal({
       onIncorrectAnswer={handleIncorrectAnswer}
     />,
     <TypingSpeed
+      onCorrectAnswer={handleCorrectAnswer}
+      onIncorrectAnswer={handleIncorrectAnswer}
+    />,
+    <Check_URL_youtube
       onCorrectAnswer={handleCorrectAnswer}
       onIncorrectAnswer={handleIncorrectAnswer}
     />,
