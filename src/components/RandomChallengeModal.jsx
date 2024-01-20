@@ -13,6 +13,7 @@ import Sudoku from "./challenges/Sudoku";
 import TypeYes from "./challenges/TypeYes";
 import TypingSpeed from "./challenges/TypingSpeed";
 import Check_URL_youtube from "./challenges/URL_youtube";
+import SelectPicture from "./challenges/SelectPicture";
 
 export default function RandomChallengeModal({
   opened,
@@ -84,7 +85,12 @@ export default function RandomChallengeModal({
     <ChessPuzzle
       onCorrectAnswer={handleCorrectAnswer}
       onIncorrectAnswer={handleIncorrectAnswer}
-    />
+    />,
+    <SelectPicture
+      onCorrectAnswer={handleCorrectAnswer}
+      onIncorrectAnswer={handleIncorrectAnswer}
+      />,
+
   ]);
 
   useEffect(() => {
