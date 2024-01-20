@@ -7,7 +7,7 @@ import GuessNumber from "./challenges/GuessNumber";
 import HumanBody from "./challenges/SelectHumanPart";
 import TypeYes from "./challenges/TypeYes";
 import TypingSpeed from "./challenges/TypingSpeed";
-
+import BallCost from "./challenges/BallCost";
 export default function RandomChallengeModal({
   opened,
   onClose,
@@ -42,7 +42,7 @@ export default function RandomChallengeModal({
       onCorrectAnswer={handleCorrectAnswer}
       onIncorrectAnswer={handleIncorrectAnswer}
     />,
-    <GuessNumber 
+    <GuessNumber
       onCorrectAnswer={handleCorrectAnswer}
       onIncorrectAnswer={handleIncorrectAnswer}
     />,
@@ -57,7 +57,11 @@ export default function RandomChallengeModal({
     <TypingSpeed
       onCorrectAnswer={handleCorrectAnswer}
       onIncorrectAnswer={handleIncorrectAnswer}
-    />
+    />,
+    <BallCost
+      onCorrectAnswer={handleCorrectAnswer}
+      onIncorrectAnswer={handleIncorrectAnswer}
+    />,
   ];
 
   useEffect(() => {
