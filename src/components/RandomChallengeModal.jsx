@@ -8,6 +8,7 @@ import HumanBody from "./challenges/SelectHumanPart";
 import TypeYes from "./challenges/TypeYes";
 import TypingSpeed from "./challenges/TypingSpeed";
 import Check_URL_youtube from "./challenges/URL_youtube";
+import Wordle_Check from "./challenges/Wordle";
 
 export default function RandomChallengeModal({
   opened,
@@ -62,6 +63,10 @@ export default function RandomChallengeModal({
     <Check_URL_youtube
       onCorrectAnswer={handleCorrectAnswer}
       onIncorrectAnswer={handleIncorrectAnswer}
+    />,
+    <Wordle_Check
+    onCorrectAnswer={handleCorrectAnswer}
+    onIncorrectAnswer={handleIncorrectAnswer}
     />
   ];
 
