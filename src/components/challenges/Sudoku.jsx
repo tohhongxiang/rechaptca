@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Container, Button, Loader } from "@mantine/core";
+import getRandomInt from "../../utils/getRandomInt";
 
-const API_URL = "https://sudoku-api.vercel.app/api/dosuku";
+const API_URL = "https://sudoku-api.vercel.app/api/dosuku?query={newboard(limit:1){grids{solution}}}";
 const GRID_SIZE = "33px";
 
 // Helper function
@@ -31,6 +32,48 @@ function areArraysEqual(arr1, arr2) {
   return true;
 }
 
+function hasDuplicate(set, tuple) {
+  for (let existingTuple of set) {
+    if (existingTuple[0] === tuple[0] && existingTuple[1] === tuple[1]) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function generateTuples(count) {
+  if (count > 9 * 9) {
+    console.error("Cannot generate more than 81 unique tuples with integers between 1 and 9.");
+    return;
+  }
+
+  let tuples = new Set();
+  const localRandFunc = () => getRandomInt(0, 9);
+
+  while (tuples.size < count) {
+    let num1 = localRandFunc();
+    let num2 = localRandFunc();
+
+    let tuple = [num1, num2];
+
+    if (!hasDuplicate(tuples, tuple)) {
+      tuples.add(tuple);
+    }
+  }
+  return Array.from(tuples);
+}
+
+function removeSomeNums(solutionGrid) {
+  const tuples = generateTuples(5);
+  let grid = solutionGrid.map((row) => row.map((num) => num));
+
+  tuples.forEach((tuple) => {
+    grid[tuple[0]][tuple[1]] = 0;
+  });
+
+  return grid;
+}
+
 export default function Sudoku({ onCorrectAnswer, onIncorrectAnswer }) {
   const [userGrid, setUserGrid] = useState([]);
   const [fixedChecks, setFixedChecks] = useState([]);
@@ -42,7 +85,9 @@ export default function Sudoku({ onCorrectAnswer, onIncorrectAnswer }) {
     const fetchData = async () => {
       setIsLoading(true);
       try {
+        console.log("before fetch");
         const response = await fetch(API_URL);
+        console.log("aft fetch");
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
@@ -50,19 +95,15 @@ export default function Sudoku({ onCorrectAnswer, onIncorrectAnswer }) {
         const data = await response.json();
         console.log(data);
         const boardData = data.newboard;
-        if (boardData.message !== "All Ok") {
-          throw new Error("Failed to fetch data");
-        }
-
         const gridData = boardData.grids[0];
-        console.log("Difficulty:", gridData.difficulty);
-        setUserGrid(nullifyArray(gridData.value));
+        setSolutionGrid(nullifyArray(gridData.solution));
+        const userGrid = removeSomeNums(gridData.solution);
+        setUserGrid(nullifyArray(userGrid));
         setFixedChecks(
-          gridData.value.map((row) =>
+          userGrid.map((row) =>
             row.map((num) => (num === 0 ? false : true))
           )
         );
-        setSolutionGrid(nullifyArray(gridData.solution));
         console.log(solutionGrid);
       } catch (error) {
         console.error("Error fetching data:", error.message);
