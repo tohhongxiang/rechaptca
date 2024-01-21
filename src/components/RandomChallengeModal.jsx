@@ -29,7 +29,7 @@ export default function RandomChallengeModal({
   };
   const handleCorrectAnswer = () => {
     onCorrectAnswer();
-    setIndex(c => (c + 1) % challenges.length);
+    setIndex((c) => (c + 1) % challenges.length);
     setRandomFactOpen(true);
   };
 
@@ -93,23 +93,23 @@ export default function RandomChallengeModal({
   ]);
 
   useEffect(() => {
-    setIndex(0)
-    setChallenges(c => shuffle(c))
-  }, [opened])
+    setIndex(0);
+    setChallenges((c) => shuffle(c));
+  }, [opened]);
 
   useEffect(() => {
     if (!randomFactOpen && opened && Math.random() < 1) {
       // RandomFact has closed, the modal is still open, and 50% probability, show challenges
-      setIndex(c => (c + 1) % challenges.length);
+      setIndex((c) => (c + 1) % challenges.length);
     }
   }, [randomFactOpen, opened, challenges.length]);
 
-  console.log(challenges[index], index)
+  console.log(challenges[index], index);
   return (
     <Modal
       opened={opened}
       onClose={onClose}
-      title="Captcha Challenge"
+      title={<h3 style={{ marginLeft: 4 }}>ReCHAPTCA Security Check</h3>}
       centered
       closeOnEscape={false}
       closeOnClickOutside={false}
